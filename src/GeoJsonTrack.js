@@ -34,6 +34,7 @@ const GeoJsonTrack = (HGC, ...args) => {
     prepAnnotation(graphics, uid, startX, startY, width, height, td) {
       return {
         graphics,
+        id: td.id,
         uid,
         annotation: {
           x: startX,
@@ -49,7 +50,7 @@ const GeoJsonTrack = (HGC, ...args) => {
     }
 
     drawAnnotation({
-      graphics, uid, annotation, dataPos, importance, info,
+      graphics, id, uid, annotation, dataPos, importance, info,
     }) {
       if (
         annotation.width < this.options.polygonMinBoundingSize
@@ -90,6 +91,7 @@ const GeoJsonTrack = (HGC, ...args) => {
       this.publish('annotationDrawn', {
         trackUuids: this.uuid,
         annotationUuid: uid,
+        annotationId: id,
         viewPos: [
           annotation.x, annotation.y, annotation.width, annotation.height,
         ],
