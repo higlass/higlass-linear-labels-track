@@ -21,17 +21,20 @@ npm install higlass-geojson
 
 ## Usage
 
+To try this track out, head over to https://github.com/pkerpedjiev/million-primes
+and start a server using the provided notebook.
+
 1. Make sure you load this track prior to `hglib.js`. For example:
 
 ```
-<script src="higlass-geojson.js"></script>
+<script src="higlass-labelled-points-track.js"></script>
 <script src="hglib.js"></script>
 <script>
   ...
 </script>
 ```
 
-2. Now, configure the track in your view config and be happy! Cheers 🎉
+2. Now, configure the track in your view config and be happy! 
 
 ```
 {
@@ -40,20 +43,8 @@ npm install higlass-geojson
     server: 'http://localhost:8001/api/v1',
     tilesetUid: 'my-outrageously-fancy-geojson-db',
     uid: 'my-outrageously-fancy-geojson-db',
-    type: 'geo-json',
+    type: 'labelled-points-track',
     options: {
-      labelColor: 'red',
-      labelPosition: 'hidden',
-      trackBorderWidth: 0,
-      trackBorderColor: 'red',
-      rectangleDomainFillColor: 'red',
-      rectangleDomainFillOpacity: 0.25,
-      rectangleDomainStrokeColor: 'red',
-      rectangleDomainOpacity: 1,
-      rectanlgeMinSize: 3,
-      minSquareSize: 4,
-      polygonMinBoundingSize: 5,
-      name: 'My Outrageously Fancy GeoJSON Stuff - Truly Awesome',
     },
   },
   ...
@@ -67,7 +58,7 @@ Take a look at [`src/index.html`](src/index.html) for an example.
 ### Installation
 
 ```bash
-$ git clone https://github.com/flekschas/higlass-geojson && higlass-geojson
+$ git clone https://github.com/pkerpedjiev/labelled-points-track && higlass-labelled-points-track
 $ npm install
 ```
 

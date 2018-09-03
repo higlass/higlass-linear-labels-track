@@ -1,27 +1,25 @@
 {
-  "name": "higlass-geojson",
-  "version": "0.1.3",
-  "description": "HiGlass GeoJSON Track",
+  "name": "higlass-labelled-point-track",
+  "version": "0.1.0",
+  "description": "HiGlass Labelled Point Track",
   "keywords": [
     "HiGlass",
-    "Track",
-    "GeoJSON",
-    "Geographic Maps"
+    "Track"
   ],
-  "author": "Fritz Lekschas",
+  "author": "Peter Kerpedjiev",
   "license": "MIT",
   "contributors": [
     {
-      "name": "Fritz Lekschas",
-      "url": "http://github.com/flekschas"
+      "name": "Peter Kerpedjiev",
+      "url": "http://github.com/pkerpedjiev"
     }
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/flekschas/higlass-geojson.git"
+    "url": "git://github.com/flekschas/higlass-labelled-point-track.git"
   },
   "main": "src/index.js",
-  "unpkg": "dist/higlass-geojson.min.js",
+  "unpkg": "dist/higlass-labelled-point-track.min.js",
   "files": [
     "dist"
   ],
@@ -57,11 +55,9 @@
   "scripts": {
     "build": "webpack --mode production",
     "start": "webpack-dev-server --mode development --open",
-    "ghp": "npm run prerelease; rm -rf ../higlass-geojson-ghp/*; cp -r ./dist/* ../higlass-geojson-ghp/; touch ../higlass-geojson-ghp/.nojekyll; touch ../higlass-geojson-ghp/CNAME; echo 'higlass-geojson.lekschas.de' > ../higlass-geojson-ghp/CNAME; cp ./node_modules/higlass/dist/scripts/hglib.js ../higlass-geojson-ghp/; cp ./node_modules/higlass/dist/styles/hglib.css ../higlass-geojson-ghp/",
     "prerelease": "rm -rf dist/*; npm run build; zip -r dist.zip dist"
   },
   "dependencies": {
-    "higlass-register": "^0.1.0",
-    "d3-geo": "^1.10.0"
+    "higlass-register": "^0.1.0"
   }
 }

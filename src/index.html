@@ -109,65 +109,89 @@
 </body>
 <script src="hglib.js"></script>
 <script>
-const testViewConfig = {
-  editable: false,
-  zoomFixed: false,
-  trackSourceServers: ['http://higlass.io/api/v1'],
-  exportViewUrl: 'http://higlass.io/api/v1/viewconfs/',
-  views: [
+const testViewConfig = 
+{
+  "editable": true,
+  "views": [
     {
-      initialXDomain: [-114.34492062432261, -103.1400637535123],
-      initialYDomain: [-46.99008821605368, -39.07861292139287],
-      tracks: {
-        center: [
+      "uid": "IjYAUq7pRuOsmWjbNTv8Dw",
+      "tracks": {
+        "top": [
           {
-            type: 'combined',
-            contents: [
-              {
-                type: 'osm-tiles',
-                options: {
-                  name: 'World-wide ski Areas',
-                },
-              },
-              {
-                server: 'http://localhost:8001/api/v1',
-                tilesetUid: 'ski-resorts',
-                type: 'geo-json',
-                options: {
-                  labelColor: 'red',
-                  labelPosition: 'hidden',
-                  trackBorderWidth: 0,
-                  trackBorderColor: 'red',
-                  rectangleDomainFillColor: 'red',
-                  rectangleDomainFillOpacity: 0.25,
-                  rectangleDomainStrokeColor: 'red',
-                  rectangleDomainOpacity: 1,
-                  rectanlgeMinSize: 3,
-                  minSquareSize: 4,
-                  polygonMinBoundingSize: 5,
-                  name: 'Ski Areas',
-                },
-              },
-            ],
-          },
+            "type": "top-axis",
+            "height": 20,
+            "position": "top",
+            "uid": "Y3MrxEmDSpe9s9YJDP1phg",
+            "name": "Top Axis",
+            "options": {}
+          }
         ],
+        "center": [
+          {
+            "type": "labelled-points-track",
+            "options": {},
+            "server": "http://localhost:8755/api/v1",
+            "tilesetUid": "a",
+            "position": "center",
+            "uid": "IymPTIYtQMa5jCGgiKTnyg"
+          }
+        ],
+        "left": [
+          {
+            "type": "left-axis",
+            "width": 100,
+            "position": "left",
+            "uid": "SunEUogFTO62-83T2Hz-yA",
+            "name": "Left Axis",
+            "options": {}
+          }
+        ],
+        "right": [],
+        "bottom": [],
+        "whole": [],
+        "gallery": []
       },
-      layout: {
-        w: 12,
-        h: 12,
-        x: 0,
-        y: 0,
-        moved: false,
-        static: false,
+      "layout": {
+        "w": 12,
+        "h": 6,
+        "x": 0,
+        "y": 0,
+        "i": "IjYAUq7pRuOsmWjbNTv8Dw",
+        "moved": false,
+        "static": false
       },
-    },
+      "initialXDomain": [
+        -9.61982331563503,
+        -4.628132520345335
+      ],
+      "initialYDomain": [
+        -4.2485117028299335,
+        0.9578754707517918
+      ]
+    }
   ],
-};
+  "trackSourceServers": [
+    "http://higlass.io/api/v1"
+  ],
+  "exportViewUrl": "http://higlass.io/api/v1/viewconfs",
+  "zoomLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "locationLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "valueScaleLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
+}
 
 window.hglib.createHgComponent(
   document.getElementById('demo'),
   testViewConfig,
-  { bounded: true, isDarkTheme: true },
+  { bounded: true, isDarkTheme: false },
 );
 </script>
 </html>

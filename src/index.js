@@ -1,9 +1,9 @@
 import register from 'higlass-register';
 
-import GeoJsonTrack from './GeoJsonTrack';
+import LabelledPointTrack from './LabelledPointTrack';
 
 register({
-  name: 'GeoJsonTrack',
-  track: GeoJsonTrack,
-  config: GeoJsonTrack.config,
+  name: 'LabelledPointTrack',
+  track: LabelledPointTrack,
+  config: LabelledPointTrack.config,
 });
