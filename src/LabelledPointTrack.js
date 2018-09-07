@@ -47,7 +47,8 @@ const LabelledPointsTrack = (HGC, ...args) => {
       if (!(point.uid in this.texts)) {
         // console.log('point:', point);
 
-        const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
+        //const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
+        const text = new PIXI.Text(`${point.data}`, {
           fontSize: '12px',
           fontFamily: 'Arial',
           fill: 0x000000,

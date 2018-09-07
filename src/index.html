@@ -7,27 +7,27 @@
   <meta name="keywords" content="HiGlass, Plugin Tracks">
 
   <!-- Schema.org markup for Google+ -->
-  <meta itemprop="name" content="HiGlass GeoJSON Track">
-  <meta itemprop="description" content="A plugin track to display GeoJSON annotation in HiGlass">
+  <meta itemprop="name" content="HiGlass Labelled Points Track">
+  <meta itemprop="description" content="A plugin track to display labelled points in HiGlass">
   <meta itemprop="image" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg">
 
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@flekschas">
   <meta name="twitter:title" content="HiGlass Labelled Points Track">
-  <meta name="twitter:description" content="A plugin track to display GeoJSON annotation in HiGlass">
+  <meta name="twitter:description" content="A plugin track to display labelled points in HiGlass">
   <meta name="twitter:creator" content="@flekschas">
   <!-- Twitter summary card with large image must be at least 280x150px -->
   <meta name="twitter:image:src" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg">
 
   <!-- Open Graph -->
-  <meta property="og:title" content="HiGlass GeoJSON Track" />
-  <meta property="og:description" content="A plugin track to display GeoJSON annotation in HiGlass" />
+  <meta property="og:title" content="HiGlass Labelled Points Track" />
+  <meta property="og:description" content="A plugin track to display labelled points HiGlass" />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://github.com/flekschas/higlass-geojson" />
+  <meta property="og:url" content="https://github.com/pkerpedjiev/higlass-labelled-points-track" />
   <meta property="og:image" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg" />
 
-  <title>HiGlass GeoJSON Track</title>
+  <title>HiGlass Labelled Points Track</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
   <link rel="stylesheet" href="hglib.css">
 
@@ -58,83 +58,7 @@
 <script src="hglib.js"></script>
 <script>
 const testViewConfig = 
-{
-  "editable": true,
-  "views": [
-    {
-      "uid": "IjYAUq7pRuOsmWjbNTv8Dw",
-      "tracks": {
-        "top": [
-          {
-            "type": "top-axis",
-            "height": 20,
-            "position": "top",
-            "uid": "Y3MrxEmDSpe9s9YJDP1phg",
-            "name": "Top Axis",
-            "options": {}
-          }
-        ],
-        "center": [
-          {
-            "type": "labelled-points-track",
-            "options": {},
-            "server": "http://localhost:8755/api/v1",
-            "tilesetUid": "a",
-            "position": "center",
-            "uid": "IymPTIYtQMa5jCGgiKTnyg"
-          }
-        ],
-        "left": [
-          {
-            "type": "left-axis",
-            "width": 100,
-            "position": "left",
-            "uid": "SunEUogFTO62-83T2Hz-yA",
-            "name": "Left Axis",
-            "options": {}
-          }
-        ],
-        "right": [],
-        "bottom": [],
-        "whole": [],
-        "gallery": []
-      },
-      "layout": {
-        "w": 12,
-        "h": 6,
-        "x": 0,
-        "y": 0,
-        "i": "IjYAUq7pRuOsmWjbNTv8Dw",
-        "moved": false,
-        "static": false
-      },
-      "initialXDomain": [
-        -9.61982331563503,
-        -4.628132520345335
-      ],
-      "initialYDomain": [
-        -4.2485117028299335,
-        0.9578754707517918
-      ]
-    }
-  ],
-  "trackSourceServers": [
-    "http://higlass.io/api/v1"
-  ],
-  "exportViewUrl": "http://higlass.io/api/v1/viewconfs",
-  "zoomLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
-  "locationLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
-  "valueScaleLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  }
-}
+{"editable": true, "views": [{"uid": "DX8Y8RBYS4Sx9X-Z7dJ2qQ", "tracks": {"top": [{"type": "top-axis", "options": {}}], "center": [{"type": "labelled-points-track", "options": {}, "server": "http://localhost:8748/api/v1", "tilesetUid": "a"}], "left": [{"type": "left-axis", "options": {}}], "right": [], "bottom": []}, "layout": {"w": 12, "h": 6, "x": 0, "y": 0}}, {"uid": "NZsPKfKLRxSWWtiJAz_0iw", "tracks": {"top": [{"type": "top-axis", "options": {}}], "center": [{"type": "labelled-points-track", "options": {}, "server": "http://localhost:8748/api/v1", "tilesetUid": "c"}], "left": [{"type": "left-axis", "options": {}}], "right": [], "bottom": []}, "layout": {"w": 12, "h": 6, "x": 0, "y": 0}}], "trackSourceServers": ["http://higlass.io/api/v1"], "exportViewUrl": "http://higlass.io/api/v1/viewconfs"};
 
 window.hglib.createHgComponent(
   document.getElementById('demo'),
