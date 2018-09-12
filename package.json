@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/flekschas/higlass-labelled-point-track.git"
+    "url": "git://github.com/pkerpedjiev/higlass-labelled-point-track.git"
   },
   "main": "src/index.js",
   "unpkg": "dist/higlass-labelled-point-track.min.js",

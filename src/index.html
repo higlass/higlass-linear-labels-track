@@ -58,7 +58,208 @@
 <script src="hglib.js"></script>
 <script>
 const testViewConfig = 
-{"editable": true, "views": [{"uid": "DX8Y8RBYS4Sx9X-Z7dJ2qQ", "tracks": {"top": [{"type": "top-axis", "options": {}}], "center": [{"type": "labelled-points-track", "options": {}, "server": "http://localhost:8748/api/v1", "tilesetUid": "a"}], "left": [{"type": "left-axis", "options": {}}], "right": [], "bottom": []}, "layout": {"w": 12, "h": 6, "x": 0, "y": 0}}, {"uid": "NZsPKfKLRxSWWtiJAz_0iw", "tracks": {"top": [{"type": "top-axis", "options": {}}], "center": [{"type": "labelled-points-track", "options": {}, "server": "http://localhost:8748/api/v1", "tilesetUid": "c"}], "left": [{"type": "left-axis", "options": {}}], "right": [], "bottom": []}, "layout": {"w": 12, "h": 6, "x": 0, "y": 0}}], "trackSourceServers": ["http://higlass.io/api/v1"], "exportViewUrl": "http://higlass.io/api/v1/viewconfs"};
+{
+  "editable": true,
+  "views": [
+    {
+      "uid": "f-nz_pxTT7GajwJaQ1BLPQ",
+      "tracks": {
+        "top": [
+          {
+            "type": "top-axis",
+            "options": {},
+            "height": 20,
+            "position": "top",
+            "uid": "BnyG55DzS2qg9jm9V_aMnA",
+            "name": "Top Axis"
+          }
+        ],
+        "center": [
+          {
+            "type": "labelled-points-track",
+            "options": {},
+            "server": "http://localhost:8749/api/v1",
+            "tilesetUid": "c",
+            "position": "center",
+            "uid": "fv5zBEy3Skuiq0XDKcXpzA"
+          }
+        ],
+        "left": [
+          {
+            "type": "left-axis",
+            "options": {},
+            "width": 100,
+            "position": "left",
+            "uid": "bYdpIfE3RdWZXTkKh7oaDQ",
+            "name": "Left Axis"
+          }
+        ],
+        "right": [],
+        "bottom": [],
+        "whole": [],
+        "gallery": []
+      },
+      "layout": {
+        "w": 12,
+        "h": 6,
+        "x": 0,
+        "y": 0,
+        "i": "f-nz_pxTT7GajwJaQ1BLPQ",
+        "moved": false,
+        "static": false
+      },
+      "initialXDomain": [
+        -1951.80823415598,
+        2127.9185514442124
+      ],
+      "initialYDomain": [
+        -1244.3914491565945,
+        1268.3814499327982
+      ]
+    },
+    {
+      "uid": "Bk4XRueiTAmLNtmvNB2FLw",
+      "tracks": {
+        "top": [
+          {
+            "type": "top-axis",
+            "options": {},
+            "height": 20,
+            "position": "top",
+            "uid": "XuKHzreaTW6cbhCuT-G40g",
+            "name": "Top Axis"
+          }
+        ],
+        "center": [
+          {
+            "type": "combined",
+            "contents": [
+              {
+                "type": "heatmap",
+                "options": {
+                  "backgroundColor": "#eeeeee",
+                  "labelPosition": "bottomRight",
+                  "colorRange": [
+                    "white",
+                    "rgba(245,166,35,1.0)",
+                    "rgba(208,2,27,1.0)",
+                    "black"
+                  ],
+                  "maxZoom": "2",
+                  "colorbarPosition": "topRight",
+                  "trackBorderWidth": 0,
+                  "trackBorderColor": "black",
+                  "heatmapValueScaling": "log",
+                  "showMousePosition": false,
+                  "mousePositionColor": "#999999",
+                  "showTooltip": false,
+                  "scaleStartPercent": "0.00000",
+                  "scaleEndPercent": "1.00000"
+                },
+                "server": "http://localhost:8749/api/v1",
+                "tilesetUid": "d",
+                "position": "center",
+                "uid": "EPNWmIk0RyO9J7NuF4O8Cg"
+              },
+              {
+                "type": "labelled-points-track",
+                "options": {},
+                "server": "http://localhost:8749/api/v1",
+                "tilesetUid": "c",
+                "position": "center",
+                "uid": "Etg-kaMeQfq2JF2F6wWQGw"
+              }
+            ],
+            "position": "center",
+            "uid": "Tylfle1nTESFAAHdqKgJ_w",
+            "options": {}
+          }
+        ],
+        "left": [
+          {
+            "type": "left-axis",
+            "options": {},
+            "width": 100,
+            "position": "left",
+            "uid": "Ghv4zgdUQN2TuZcOYuMg7Q",
+            "name": "Left Axis"
+          }
+        ],
+        "right": [],
+        "bottom": [],
+        "whole": [],
+        "gallery": []
+      },
+      "layout": {
+        "w": 12,
+        "h": 6,
+        "x": 0,
+        "y": 6,
+        "i": "Bk4XRueiTAmLNtmvNB2FLw",
+        "moved": false,
+        "static": false
+      },
+      "initialXDomain": [
+        -1951.808234156064,
+        2127.9185514442975
+      ],
+      "initialYDomain": [
+        -1244.3914491566456,
+        1268.3814499328496
+      ]
+    }
+  ],
+  "trackSourceServers": [
+    "http://higlass.io/api/v1"
+  ],
+  "exportViewUrl": "http://higlass.io/api/v1/viewconfs",
+  "zoomLocks": {
+    "locksByViewUid": {
+      "Bk4XRueiTAmLNtmvNB2FLw": "F9udQNPGQ_usZYbk5Hdb6Q",
+      "f-nz_pxTT7GajwJaQ1BLPQ": "F9udQNPGQ_usZYbk5Hdb6Q"
+    },
+    "locksDict": {
+      "F9udQNPGQ_usZYbk5Hdb6Q": {
+        "Bk4XRueiTAmLNtmvNB2FLw": [
+          50.00000000000002,
+          49.999999999999986,
+          0.2336448598130983
+        ],
+        "f-nz_pxTT7GajwJaQ1BLPQ": [
+          50.000000000000014,
+          49.99999999999999,
+          0.23364485981308414
+        ],
+        "uid": "F9udQNPGQ_usZYbk5Hdb6Q"
+      }
+    }
+  },
+  "locationLocks": {
+    "locksByViewUid": {
+      "Bk4XRueiTAmLNtmvNB2FLw": "UgtdqRmKQlW4uhP6YB3iWg",
+      "f-nz_pxTT7GajwJaQ1BLPQ": "UgtdqRmKQlW4uhP6YB3iWg"
+    },
+    "locksDict": {
+      "UgtdqRmKQlW4uhP6YB3iWg": {
+        "Bk4XRueiTAmLNtmvNB2FLw": [
+          50.00000000000002,
+          49.999999999999986,
+          0.2336448598130983
+        ],
+        "f-nz_pxTT7GajwJaQ1BLPQ": [
+          50.000000000000014,
+          49.99999999999999,
+          0.23364485981308414
+        ],
+        "uid": "UgtdqRmKQlW4uhP6YB3iWg"
+      }
+    }
+  },
+  "valueScaleLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
+};
 
 window.hglib.createHgComponent(
   document.getElementById('demo'),
