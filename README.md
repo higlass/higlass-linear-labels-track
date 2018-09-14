@@ -16,7 +16,7 @@
 ## Installation
 
 ```
-npm install higlass-geojson
+npm install higlass-labelled-points-track
 ```
 
 ## Usage
