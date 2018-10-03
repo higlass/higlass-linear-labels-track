@@ -1,5 +1,6 @@
 import boxIntersect from 'box-intersect';
 import * as PIXI from 'pixi.js';
+import slugid from 'slugid';
 
 const LabelledPointsTrack = (HGC, ...args) => {
   if (!new.target) {
@@ -43,12 +44,23 @@ const LabelledPointsTrack = (HGC, ...args) => {
       // console.log('this.xTiles:', this.xTiles, this.yTiles, this._yScale.domain());
     }
 
+    initTile(tile) {
+      // console.log('initTile:', tile);
+      for (const data of tile.tileData) {
+        if (!('uid' in data)) {
+          data.uid = slugid.nice();
+        }
+      }
+    }
+
     getText(tile, point) {
       if (!(point.uid in this.texts)) {
         // console.log('point:', point);
 
         // const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
-        const text = new PIXI.Text(`${point.data}`, {
+        const labelField = this.options.labelField || 'data';
+
+        const text = new PIXI.Text(`${point[labelField]}`, {
           fontSize: '13px',
           fontFamily: 'Arial',
           fill: 0x000000,
@@ -98,13 +110,19 @@ const LabelledPointsTrack = (HGC, ...args) => {
     drawTile(tile) {
       tile.graphics.clear();
 
+      if (!tile.tileData.length)
+        return;
+      
       // console.log('draw:', tile.tileId);
       for (const point of tile.tileData) {
         // console.log('point.pos:', point.pos);
         // add text showing the tile position
 
-        const xPos = this._xScale(point.pos[0]);
-        const yPos = this._yScale(point.pos[1]);
+        const xField = this.options.xPosField || 'x';
+        const yField = this.options.yPosField || 'y';
+
+        const xPos = this._xScale(point[xField]);
+        const yPos = this._yScale(point[yField]);
 
         const pointWidth = 6;
 
