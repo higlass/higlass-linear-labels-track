@@ -9,23 +9,19 @@
   <!-- Schema.org markup for Google+ -->
   <meta itemprop="name" content="HiGlass Labelled Points Track">
   <meta itemprop="description" content="A plugin track to display labelled points in HiGlass">
-  <meta itemprop="image" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg">
 
   <!-- Twitter Card data -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:site" content="@flekschas">
+  <meta name="twitter:site" content="@pkerpedjiev">
   <meta name="twitter:title" content="HiGlass Labelled Points Track">
   <meta name="twitter:description" content="A plugin track to display labelled points in HiGlass">
-  <meta name="twitter:creator" content="@flekschas">
-  <!-- Twitter summary card with large image must be at least 280x150px -->
-  <meta name="twitter:image:src" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg">
+  <meta name="twitter:creator" content="@pkerpedjiev">
 
   <!-- Open Graph -->
   <meta property="og:title" content="HiGlass Labelled Points Track" />
   <meta property="og:description" content="A plugin track to display labelled points HiGlass" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://github.com/pkerpedjiev/higlass-labelled-points-track" />
-  <meta property="og:image" content="https://raw.githubusercontent.com/flekschas/higlass-geojson/master/teaser.jpg" />
 
   <title>HiGlass Labelled Points Track</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
@@ -36,7 +32,6 @@
     body {
       margin: 0;
       padding: 0;
-      background: black !important;
     }
     #demo {
       position: absolute;
@@ -47,64 +42,64 @@
     }
   </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.6.2/pixi.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.0/react-bootstrap.min.js"></script>
+  <script src="https://unpkg.com/react@16.5.2/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@16.5.2/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/pixi.js@4.8.2/dist/pixi.min.js"></script>
+  <script src="https://unpkg.com/react-bootstrap@0.32.1/dist/react-bootstrap.min.js"></script></script>
 </head>
 <body>
   <div id="demo"></div>
 </body>
 <script src="hglib.js"></script>
 <script>
-const testViewConfig = 
+const testViewConfig =
 {
-  "editable": true,
-  "views": [
+  editable: true,
+  views: [
     {
-      "uid": "PnsgfSEHT2OU8FflQCl2lw",
-      "tracks": {
-        "top": [
+      uid: 'PnsgfSEHT2OU8FflQCl2lw',
+      tracks: {
+        top: [
           {
-            "type": "top-axis",
-            "options": {}
-          }
+            type: 'top-axis',
+            options: {},
+          },
         ],
-        "center": [
+        center: [
           {
-            "type": "labelled-points-track",
-            "options": {
-              "labelField": "gene1"
+            type: 'labelled-points-track',
+            options: {
+              labelField: 'gene1',
             },
-            "server": "http://localhost:64489/api/v1",
-            "tilesetUid": "a",
-            "height": 200
-          }
+            server: 'http://localhost:64489/api/v1',
+            tilesetUid: 'a',
+            height: 200,
+          },
         ],
-        "left": [
+        left: [
           {
-            "type": "left-axis",
-            "options": {}
-          }
+            type: 'left-axis',
+            options: {},
+          },
         ],
-        "right": [],
-        "bottom": []
+        right: [],
+        bottom: [],
       },
-      "layout": {
-        "w": 12,
-        "h": 6,
-        "x": 0,
-        "y": 0
-      }
-    }
+      layout: {
+        w: 12,
+        h: 6,
+        x: 0,
+        y: 0,
+      },
+    },
   ],
-  "trackSourceServers": [
-    "http://higlass.io/api/v1"
+  trackSourceServers: [
+    'http://higlass.io/api/v1',
   ],
-  "exportViewUrl": "http://higlass.io/api/v1/viewconfs"
-}
+  exportViewUrl: 'http://higlass.io/api/v1/viewconfs',
+};
 
-window.hglib.createHgComponent(
+window.hglib.viewer(
   document.getElementById('demo'),
   testViewConfig,
   { bounded: true, isDarkTheme: false },
