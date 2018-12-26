@@ -9,10 +9,10 @@
 
 **Note**: This is the source code for the labelled points track only! You might want to check out the following repositories as well:
 
-- HiGlass labelled points track (this repository): https://github.com/pkerpedjiev/higlass-labelled-points-tracks
-- HiGlass viewer: https://github.com/hms-dbmi/higlass
-- HiGlass server: https://github.com/hms-dbmi/higlass-server
-- HiGlass docker: https://github.com/hms-dbmi/higlass-docker
+- HiGlass labelled points track (this repository): https://github.com/higlass/higlass-labelled-points-tracks
+- HiGlass viewer: https://github.com/higlass/higlass
+- HiGlass server: https://github.com/higlass/higlass-server
+- HiGlass docker: https://github.com/higlass/higlass-docker
 
 ## Installation
 
