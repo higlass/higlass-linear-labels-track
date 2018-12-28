@@ -2,23 +2,19 @@ import boxIntersect from 'box-intersect';
 import * as PIXI from 'pixi.js';
 import slugid from 'slugid';
 
-const LabelledPointsTrack = (HGC, ...args) => {
+const LinearLabelsTrack = (HGC, ...args) => {
   if (!new.target) {
     throw new Error(
       'Uncaught TypeError: Class constructor cannot be invoked without "new"',
     );
   }
 
-  class LabelledPointsTrackClass extends HGC.tracks.Annotations2dTrack {
+  class LinearLabelsTrackClass extends HGC.tracks.HorizontalGeneAnnotationsTrack {
     constructor(
-      scene, trackConfig, dataConfig, handleTilesetInfoReceived, animate,
+      context, options,
     ) {
       super(
-        scene,
-        dataConfig,
-        handleTilesetInfoReceived,
-        trackConfig.options,
-        animate,
+        context, options,
       );
 
       this.texts = {};
@@ -45,7 +41,7 @@ const LabelledPointsTrack = (HGC, ...args) => {
     }
 
     initTile(tile) {
-      // console.log('initTile:', tile);
+      console.log('initTile:', tile);
       for (const data of tile.tileData) {
         if (!('uid' in data)) {
           data.uid = slugid.nice();
@@ -58,7 +54,9 @@ const LabelledPointsTrack = (HGC, ...args) => {
         // console.log('point:', point);
 
         // const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
-        const labelField = this.options.labelField || 'data';
+        const labelField = this.options.labelField || 'label';
+
+        console.log('point:', point);
 
         const text = new PIXI.Text(`${point[labelField]}`, {
           fontSize: '13px',
@@ -110,8 +108,9 @@ const LabelledPointsTrack = (HGC, ...args) => {
     drawTile(tile) {
       tile.graphics.clear();
 
-      if (!tile.tileData.length)
+      if (!tile.tileData.length){
         return;
+      }
       
       // console.log('draw:', tile.tileId);
       for (const point of tile.tileData) {
@@ -119,10 +118,11 @@ const LabelledPointsTrack = (HGC, ...args) => {
         // add text showing the tile position
 
         const xField = this.options.xPosField || 'x';
-        const yField = this.options.yPosField || 'y';
 
         const xPos = this._xScale(point[xField]);
-        const yPos = this._yScale(point[yField]);
+        const yPos = this.dimensions[1] / 2
+
+        // console.log('xPos:', xPos, point[xField]);
 
         const pointWidth = 6;
 
@@ -149,7 +149,6 @@ const LabelledPointsTrack = (HGC, ...args) => {
 
     zoomed(newXScale, newYScale) {
       this.xScale(newXScale);
-      this.yScale(newYScale);
 
       this.refreshTiles();
       this.draw();
@@ -171,17 +170,76 @@ const LabelledPointsTrack = (HGC, ...args) => {
           });
           */
       if (allBoxes && allTexts && allBoxes.length !== allTexts.length) {
-        console.warn('uneven lengths:', allBoxes.length, allTexts.length)
+        console.warn('uneven lengths:', allBoxes.length, allTexts.length);
       }
 
-      // turn on all texts so that we can hide the ones that overlap
+      // This code is commented out because it leads to labels appearing
+      // in reponse to the disappearance of another label. 
+      // 
+      // let allTextsBoxes = [];
+      // // turn on all texts so that we can hide the ones that overlap
+      // if (allTexts) {
+      //   for (let i = 0; i < allTexts.length; i++) {
+      //     allTexts[i].text.visible = true;
+
+      //     // store texts and bounding boes together so that we can sort
+      //     // them by importance later
+      //     allTextsBoxes.push([allTexts[i], allBoxes[i], i]);
+      //   }
+      // }
+
+      // // keep track of which texts intersect
+      // const intersections = {};
+      // boxIntersect(allBoxes, (i, j) => {
+      //   if (!intersections[i]) {
+      //     intersections[i] = new Set();
+      //   }
+
+      //   if (!intersections[j]) {
+      //     intersections[j] = new Set();
+      //   }
+
+      //   intersections[i].add(j);
+      //   intersections[j].add(i);
+      // });
+
+      // allTextsBoxes.sort((a, b) => +b[0].importance - +a[0].importance);
+      // console.log('allTextsBoxes', allTextsBoxes);
+
+      // for (let i = 0; i < allTextsBoxes.length; i++) {
+      //   const origIndex = allTextsBoxes[i][2];
+      //   const text = allTextsBoxes[i][0];
+
+      //   if (!text.text.visible) {
+      //     // already hidden so ignore this text
+      //     continue;
+      //   }
+
+      //   if (intersections[origIndex]) {
+      //     // has an intersection
+      //     for (const k of intersections[origIndex]) {
+      //       if (allTexts[k].importance <= allTexts[origIndex].importance) {
+      //         // console.log('hiding:', origIndex, text.importance, k, allTexts[k].importance);
+      //         allTexts[k].text.visible = false;
+      //       }
+      //     }
+      //   }
+
+      // }
+
+      // for (let i = 0; i < allTextsBoxes.length; i++) {
+      //   if (allTextsBoxes[i][0].text.visible) {
+      //     console.log(i, allTextsBoxes[i][0].text.text, allTextsBoxes[i][0].importance, allTextsBoxes[i][1]);
+      //   }
+      // }
+
       if (allTexts) {
         for (let i = 0; i < allTexts.length; i++) {
           allTexts[i].text.visible = true;
         }
       }
-      
-      const result = boxIntersect(allBoxes, (i, j) => {
+
+      boxIntersect(allBoxes, (i, j) => {
         if (allTexts[i].importance > allTexts[j].importance) {
           // console.log('hiding:', allTexts[j].caption)
           allTexts[j].text.visible = false;
@@ -193,16 +251,16 @@ const LabelledPointsTrack = (HGC, ...args) => {
     }
   }
 
-  return new LabelledPointsTrackClass(...args);
+  return new LinearLabelsTrackClass(...args);
 };
 
 const icon = '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="1.5"><path d="M4 2.1L.5 3.5v12l5-2 5 2 5-2v-12l-5 2-3.17-1.268" fill="none" stroke="currentColor"/><path d="M10.5 3.5v12" fill="none" stroke="currentColor" stroke-opacity=".33" stroke-dasharray="1,2,0,0"/><path d="M5.5 13.5V6" fill="none" stroke="currentColor" stroke-opacity=".33" stroke-width=".9969299999999999" stroke-dasharray="1.71,3.43,0,0"/><path d="M9.03 5l.053.003.054.006.054.008.054.012.052.015.052.017.05.02.05.024 4 2 .048.026.048.03.046.03.044.034.042.037.04.04.037.04.036.042.032.045.03.047.028.048.025.05.022.05.02.053.016.053.014.055.01.055.007.055.005.055v.056l-.002.056-.005.055-.008.055-.01.055-.015.054-.017.054-.02.052-.023.05-.026.05-.028.048-.03.046-.035.044-.035.043-.038.04-4 4-.04.037-.04.036-.044.032-.045.03-.046.03-.048.024-.05.023-.05.02-.052.016-.052.015-.053.012-.054.01-.054.005-.055.003H8.97l-.053-.003-.054-.006-.054-.008-.054-.012-.052-.015-.052-.017-.05-.02-.05-.024-4-2-.048-.026-.048-.03-.046-.03-.044-.034-.042-.037-.04-.04-.037-.04-.036-.042-.032-.045-.03-.047-.028-.048-.025-.05-.022-.05-.02-.053-.016-.053-.014-.055-.01-.055-.007-.055L4 10.05v-.056l.002-.056.005-.055.008-.055.01-.055.015-.054.017-.054.02-.052.023-.05.026-.05.028-.048.03-.046.035-.044.035-.043.038-.04 4-4 .04-.037.04-.036.044-.032.045-.03.046-.03.048-.024.05-.023.05-.02.052-.016.052-.015.053-.012.054-.01.054-.005L8.976 5h.054zM5 10l4 2 4-4-4-2-4 4z" fill="currentColor"/><path d="M7.124 0C7.884 0 8.5.616 8.5 1.376v3.748c0 .76-.616 1.376-1.376 1.376H3.876c-.76 0-1.376-.616-1.376-1.376V1.376C2.5.616 3.116 0 3.876 0h3.248zm.56 5.295L5.965 1H5.05L3.375 5.295h.92l.354-.976h1.716l.375.975h.945zm-1.596-1.7l-.592-1.593-.58 1.594h1.172z" fill="currentColor"/></svg>';
 
-LabelledPointsTrack.config = {
-  type: 'labelled-points-track',
-  datatype: ['scatter-point'],
-  orientation: '2d',
-  name: 'LabelledPointsTrack',
+LinearLabelsTrack.config = {
+  type: 'linear-labels',
+  datatype: ['linear-labels'],
+  orientation: '1d',
+  name: 'LinearLabelsTrack',
   thumbnail: new DOMParser().parseFromString(icon, 'text/xml').documentElement,
   availableOptions: [
   ],
@@ -210,4 +268,4 @@ LabelledPointsTrack.config = {
   },
 };
 
-export default LabelledPointsTrack;
+export default LinearLabelsTrack;

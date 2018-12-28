@@ -1,9 +1,9 @@
 import register from 'higlass-register';
 
-import LabelledPointTrack from './LabelledPointTrack';
+import LinearLabelsTrack from './LinearLabelsTrack';
 
 register({
-  name: 'LabelledPointTrack',
-  track: LabelledPointTrack,
-  config: LabelledPointTrack.config,
+  name: 'LinearLabelsTrack',
+  track: LinearLabelsTrack,
+  config: LinearLabelsTrack.config,
 });

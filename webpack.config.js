@@ -8,14 +8,14 @@ const UnminifiedWebpackPlugin = require('unminified-webpack-plugin');
 
 module.exports = {
   output: {
-    filename: 'higlass-labelled-points-track.min.js',
-    library: 'higlass-labelled-points-track',
+    filename: 'higlass-linear-labels-track.min.js',
+    library: 'higlass-linear-labels-track',
     libraryTarget: 'umd',
     path: path.resolve(__dirname, 'dist'),
   },
   devServer: {
     contentBase: [
-      path.join(__dirname, 'node_modules/higlass/build'),
+      path.join(__dirname, 'node_modules/higlass/dist'),
     ],
     watchContentBase: true,
   },

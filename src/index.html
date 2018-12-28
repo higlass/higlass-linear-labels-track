@@ -36,7 +36,6 @@
     body {
       margin: 0;
       padding: 0;
-      background: black !important;
     }
     #demo {
       position: absolute;
@@ -47,10 +46,10 @@
     }
   </style>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.6.2/react.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/15.6.2/react-dom.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.6.2/pixi.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.0/react-bootstrap.min.js"></script>
+<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pixi.js/4.8.2/pixi.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-bootstrap/0.32.1/react-bootstrap.min.js"></script>
 </head>
 <body>
   <div id="demo"></div>
@@ -62,52 +61,75 @@ const testViewConfig =
   "editable": true,
   "views": [
     {
-      "uid": "PnsgfSEHT2OU8FflQCl2lw",
+      "uid": "WduJgrBjQO6oXa4BYe6g_Q",
       "tracks": {
         "top": [
           {
             "type": "top-axis",
-            "options": {}
-          }
-        ],
-        "center": [
+            "options": {},
+            "height": 50,
+            "position": "top",
+            "uid": "WKl_Fc01RwiumlZHr2kniQ",
+            "name": "Top Axis"
+          },
           {
-            "type": "labelled-points-track",
-            "options": {
-              "labelField": "gene1"
-            },
-            "server": "http://localhost:64489/api/v1",
+            "type": "linear-labels",
+            "options": {},
             "tilesetUid": "a",
-            "height": 200
+            "height": 200,
+            "server": "http://localhost:58720/api/v1",
+            "position": "top",
+            "uid": "R_RAtw72SKG3spDp9L-4xQ"
           }
         ],
-        "left": [
-          {
-            "type": "left-axis",
-            "options": {}
-          }
-        ],
+        "center": [],
+        "left": [],
         "right": [],
-        "bottom": []
+        "bottom": [],
+        "whole": [],
+        "gallery": []
       },
       "layout": {
         "w": 12,
         "h": 6,
         "x": 0,
-        "y": 0
-      }
+        "y": 0,
+        "i": "WduJgrBjQO6oXa4BYe6g_Q",
+        "moved": false,
+        "static": false
+      },
+      "initialXDomain": [
+        7653.02923338495,
+        7654.811854376744
+      ],
+      "initialYDomain": [
+        -4198.564720963839,
+        -4197.527040386506
+      ]
     }
   ],
   "trackSourceServers": [
     "http://higlass.io/api/v1"
   ],
-  "exportViewUrl": "http://higlass.io/api/v1/viewconfs"
+  "locationLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "zoomLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  },
+  "exportViewUrl": "http://higlass.io/api/v1/viewconfs",
+  "valueScaleLocks": {
+    "locksByViewUid": {},
+    "locksDict": {}
+  }
 }
 
-window.hglib.createHgComponent(
+window.hglib.viewer(
   document.getElementById('demo'),
   testViewConfig,
-  { bounded: true, isDarkTheme: false },
+  { bounded: true },
 );
 </script>
 </html>

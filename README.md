@@ -1,6 +1,6 @@
-# Labelled Points Track for HiGlass
+# Linear Labels Track
 
-> Explore datasets containing millions of points with labels in HiGlass
+> Tile-based labels along a 1D axis (x- or y-)
 
 [![HiGlass](https://img.shields.io/badge/higlass-👍-red.svg?colorB=0f5d92)](http://higlass.io)
 [![Build Status](https://img.shields.io/travis/pkerpedjiev/higlass-labelled-points-track/master.svg?colorB=0f5d92)](https://travis-ci.org/pkerpedjiev/higlass-labelled-points-track)
@@ -17,18 +17,15 @@
 ## Installation
 
 ```
-npm install higlass-labelled-points-track
+npm install higlass-linear-labels-track
 ```
 
 ## Usage
 
-To try this track out, head over to https://github.com/pkerpedjiev/million-primes
-and start a server using the provided notebook.
-
 1. Make sure you load this track prior to `hglib.js`. For example:
 
 ```
-<script src="higlass-labelled-points-track.js"></script>
+<script src="higlass-linear-labels-track.js"></script>
 <script src="hglib.js"></script>
 <script>
   ...
@@ -43,11 +40,10 @@ and start a server using the provided notebook.
   {
     server: 'http://localhost:8001/api/v1',
     tilesetUid: 'blah',
-    type: 'labelled-points-track',
+    type: 'linear-labels-track',
     options: {
         labelField: 'label',
         xPosField: 'x',
-        yPosField: 'y'
     },
   },
   ...
@@ -61,7 +57,7 @@ Take a look at [`src/index.html`](src/index.html) for an example.
 ### Installation
 
 ```bash
-$ git clone https://github.com/pkerpedjiev/labelled-points-track && higlass-labelled-points-track
+$ git clone https://github.com/higlass/linear-labels-track && higlass-linear-labels-track
 $ npm install
 ```
 
