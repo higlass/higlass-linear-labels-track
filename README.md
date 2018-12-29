@@ -9,7 +9,7 @@
 
 **Note**: This is the source code for the labelled points track only! You might want to check out the following repositories as well:
 
-- HiGlass labelled points track (this repository): https://github.com/higlass/higlass-labelled-points-tracks
+- HiGlass labelled points track (this repository): https://github.com/higlass/higlass-linear-labels-tracks
 - HiGlass viewer: https://github.com/higlass/higlass
 - HiGlass server: https://github.com/higlass/higlass-server
 - HiGlass docker: https://github.com/higlass/higlass-docker
