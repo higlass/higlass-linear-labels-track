@@ -41,7 +41,6 @@ const LinearLabelsTrack = (HGC, ...args) => {
     }
 
     initTile(tile) {
-      console.log('initTile:', tile);
       for (const data of tile.tileData) {
         if (!('uid' in data)) {
           data.uid = slugid.nice();
@@ -55,8 +54,6 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
         // const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
         const labelField = this.options.labelField || 'label';
-
-        console.log('point:', point);
 
         const text = new PIXI.Text(`${point[labelField]}`, {
           fontSize: '13px',
@@ -120,20 +117,25 @@ const LinearLabelsTrack = (HGC, ...args) => {
         const xField = this.options.xPosField || 'x';
 
         const xPos = this._xScale(point[xField]);
-        const yPos = this.dimensions[1] / 2
+        const yPos = this.dimensions[1] / 2;
 
         // console.log('xPos:', xPos, point[xField]);
 
-        const pointWidth = 6;
+        const pointWidth = 2;
+        const pointHeight = 6;
+        const marginMiddle = 4;
 
         tile.graphics.beginFill(0x000000);
         tile.graphics.drawRect(xPos - (pointWidth / 2),
-          yPos - (pointWidth / 2), pointWidth, pointWidth);
+          yPos + marginMiddle / 2 , pointWidth, pointHeight);
 
         const text = this.getText(tile, point);
 
+        text.anchor.x = 0.5;
+        text.anchor.y = 1;
+
         text.x = xPos;
-        text.y = yPos;
+        text.y = yPos - marginMiddle / 2;
 
         const box = this.boxes[point.uid];
 
