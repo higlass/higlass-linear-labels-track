@@ -1,7 +1,7 @@
 {
-  "name": "higlass-labelled-points-track",
+  "name": "higlass-linear-labels-track",
   "version": "0.1.7",
-  "description": "HiGlass Labelled Points Track",
+  "description": "HiGlass Linear Labels Track",
   "keywords": [
     "HiGlass",
     "Track"
@@ -16,10 +16,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/pkerpedjiev/higlass-labelled-points-track.git"
+    "url": "git://github.com/pkerpedjiev/higlass-linear-labels-track.git"
   },
   "main": "src/index.js",
-  "unpkg": "dist/higlass-labelled-points-track.min.js",
+  "unpkg": "dist/higlass-linear-labels-track.min.js",
   "files": [
     "dist"
   ],
