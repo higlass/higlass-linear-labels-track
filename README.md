@@ -5,11 +5,11 @@
 [![HiGlass](https://img.shields.io/badge/higlass-👍-red.svg?colorB=0f5d92)](http://higlass.io)
 [![Build Status](https://img.shields.io/travis/pkerpedjiev/higlass-labelled-points-track/master.svg?colorB=0f5d92)](https://travis-ci.org/pkerpedjiev/higlass-labelled-points-track)
 
-![A view of over 1 million data points, heavily downsampled](/teaser.png?raw=true "A downsampling of many points")
+<img src="/teaser.png?raw=true" width="600" />
 
-**Note**: This is the source code for the labelled points track only! You might want to check out the following repositories as well:
+**Note**: This is the source code for the linear labels track only! You might want to check out the following repositories as well:
 
-- HiGlass labelled points track (this repository): https://github.com/higlass/higlass-linear-labels-tracks
+- HiGlass linear labels track (this repository): https://github.com/higlass/higlass-linear-labels-tracks
 - HiGlass viewer: https://github.com/higlass/higlass
 - HiGlass server: https://github.com/higlass/higlass-server
 - HiGlass docker: https://github.com/higlass/higlass-docker
@@ -21,6 +21,15 @@ npm install higlass-linear-labels-track
 ```
 
 ## Usage
+
+### Server
+
+First, make sure that you have a server capable of serving tiled labels.
+[This notebook](https://github.com/higlass/higlass-python/blob/pkerpedjiev/merge-branches/notebooks/Label%20server%20example.ipynb) provides a functioning demo
+server that can be run locally. In the last cell, a viewconf is provided which
+can be used to instantiate HiGlass (see step 2 below).
+
+### Client
 
 1. Make sure you load this track prior to `hglib.js`. For example:
 
