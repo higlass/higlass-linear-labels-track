@@ -3,7 +3,7 @@
 > Tile-based labels along a 1D axis (x- or y-)
 
 [![HiGlass](https://img.shields.io/badge/higlass-👍-red.svg?colorB=0f5d92)](http://higlass.io)
-[![Build Status](https://img.shields.io/travis/pkerpedjiev/higlass-labelled-points-track/master.svg?colorB=0f5d92)](https://travis-ci.org/pkerpedjiev/higlass-labelled-points-track)
+[![Build Status](https://img.shields.io/travis/higlass/higlass-linear-labels-track/master.svg?colorB=0f5d92)](https://travis-ci.org/higlass/higlass-linear-labels-track)
 
 <img src="/teaser.png?raw=true" width="600" />
 
