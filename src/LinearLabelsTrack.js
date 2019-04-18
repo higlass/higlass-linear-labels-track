@@ -261,7 +261,7 @@ const icon = '<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" fill-r
 LinearLabelsTrack.config = {
   type: 'linear-labels',
   datatype: ['linear-labels'],
-  orientation: '1d',
+  orientation: '1d-horizontal',
   name: 'LinearLabelsTrack',
   thumbnail: new DOMParser().parseFromString(icon, 'text/xml').documentElement,
   availableOptions: [
