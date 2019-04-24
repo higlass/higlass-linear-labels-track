@@ -59,70 +59,194 @@
 const testViewConfig = 
 {
   "editable": true,
+  "trackSourceServers": [
+    "/api/v1",
+    "http://higlass.io/api/v1"
+  ],
+  "exportViewUrl": "/api/v1/viewconfs",
   "views": [
     {
-      "uid": "WduJgrBjQO6oXa4BYe6g_Q",
+      "initialXDomain": [
+        -18844.34036137952,
+        100829.87085803178
+      ],
+      "initialYDomain": [
+        -2101.9634270605975,
+        93702.80129231398
+      ],
       "tracks": {
-        "top": [
-          {
-            "type": "top-axis",
-            "options": {},
-            "height": 50,
-            "position": "top",
-            "uid": "WKl_Fc01RwiumlZHr2kniQ",
-            "name": "Top Axis"
-          },
+        "top": [],
+        "left": [
           {
             "type": "linear-labels",
-            "options": {},
-            "tilesetUid": "a",
-            "height": 200,
-            "server": "http://localhost:58720/api/v1",
-            "position": "top",
-            "uid": "R_RAtw72SKG3spDp9L-4xQ"
+            "uid": "OwWYxZ96SEiKJBCHfIg",
+            "tilesetUid": "ZPIL0W2NTyadgTPMqfPqnw",
+            "server": "http://resgen.io/api/v1",
+            "options": {
+              "name": "labels.h5"
+            },
+            "name": "labels.h5",
+            "width": 86,
+            "position": "left",
+            "height": 448
           }
         ],
-        "center": [],
-        "left": [],
-        "right": [],
+        "center": [
+          {
+            "uid": "OiK3kxpRRQSqvsXaQg1qjA",
+            "type": "combined",
+            "contents": [
+              {
+                "type": "heatmap",
+                "uid": "Fwu650FiSq61Ij7f2J6W1Q",
+                "tilesetUid": "Bu6Djvt9T_mgZPHLig3NfQ",
+                "server": "http://resgen.io/api/v1",
+                "options": {
+                  "backgroundColor": "#eeeeee",
+                  "labelPosition": "bottomRight",
+                  "labelLeftMargin": 0,
+                  "labelRightMargin": 0,
+                  "labelTopMargin": 0,
+                  "labelBottomMargin": 0,
+                  "colorRange": [
+                    "white",
+                    "rgba(245,166,35,1.0)",
+                    "rgba(208,2,27,1.0)",
+                    "black"
+                  ],
+                  "maxZoom": null,
+                  "colorbarPosition": "topRight",
+                  "trackBorderWidth": 0,
+                  "trackBorderColor": "black",
+                  "heatmapValueScaling": "log",
+                  "showMousePosition": false,
+                  "mousePositionColor": "#999999",
+                  "showTooltip": false,
+                  "name": "blah_all.h5",
+                  "scaleStartPercent": "0.00000",
+                  "scaleEndPercent": "1.00000"
+                },
+                "width": 684,
+                "height": 448,
+                "name": "blah_all.h5",
+                "resolutions": [
+                  1,
+                  128,
+                  16,
+                  2,
+                  256,
+                  32,
+                  4,
+                  512,
+                  64,
+                  8
+                ],
+                "position": "center"
+              }
+            ],
+            "position": "center",
+            "options": {},
+            "width": 684,
+            "height": 448
+          }
+        ],
         "bottom": [],
-        "whole": [],
+        "right": [],
+        "whole": [
+          {
+            "type": "vertical-rule",
+            "x": 921.2312492721725,
+            "position": "whole",
+            "options": {},
+            "uid": "X8dwPPE8QMWbBUqS0MSD9Q",
+            "name": "Vertical Rule",
+            "width": 770,
+            "height": 508
+          }
+        ],
         "gallery": []
       },
       "layout": {
         "w": 12,
-        "h": 6,
+        "h": 11,
         "x": 0,
         "y": 0,
-        "i": "WduJgrBjQO6oXa4BYe6g_Q",
+        "i": "IEsW-fQ9S1W9j74p0qMDAg",
         "moved": false,
         "static": false
       },
-      "initialXDomain": [
-        7653.02923338495,
-        7654.811854376744
-      ],
-      "initialYDomain": [
-        -4198.564720963839,
-        -4197.527040386506
-      ]
+      "uid": "IEsW-fQ9S1W9j74p0qMDAg"
     }
   ],
-  "trackSourceServers": [
-    "http://higlass.io/api/v1"
-  ],
-  "locationLocks": {
-    "locksByViewUid": {},
-    "locksDict": {}
-  },
   "zoomLocks": {
     "locksByViewUid": {},
     "locksDict": {}
   },
-  "exportViewUrl": "http://higlass.io/api/v1/viewconfs",
-  "valueScaleLocks": {
+  "locationLocks": {
     "locksByViewUid": {},
     "locksDict": {}
+  },
+  "valueScaleLocks": {
+    "locksByViewUid": {
+      "DP3kiS_pRh29jKAVabyKLA.YmCQS4TbT46-n7EKwCw5iA": "RIXzLsj_Rz2PZ7y2KunU6w",
+      "BNC5_tQKSbir2O54lqm_6g.aC70NewBQBOhLJp7lsPC0g": "RIXzLsj_Rz2PZ7y2KunU6w",
+      "DP3kiS_pRh29jKAVabyKLA.ZMj02OUFRJOMWEDtyoZ1FA": "RIXzLsj_Rz2PZ7y2KunU6w",
+      "OHZghd5-TZCTWHYzvFm2AQ.NfdwnPmmTD-897GyJ5f22A": "RIXzLsj_Rz2PZ7y2KunU6w",
+      "OHZghd5-TZCTWHYzvFm2AQ.CCyxKXoERSyaW_nO8keDCA": "RIXzLsj_Rz2PZ7y2KunU6w",
+      "RJs_aLtSS_6BGtqLD_TN-Q.NfdwnPmmTD-897GyJ5f22A": "Uahm9yCRQxarhEIbcDhmmw",
+      "R4_qtXb1TfyfgPqDv-0PjA.YmCQS4TbT46-n7EKwCw5iA": "Uahm9yCRQxarhEIbcDhmmw",
+      "R4_qtXb1TfyfgPqDv-0PjA.ZMj02OUFRJOMWEDtyoZ1FA": "Uahm9yCRQxarhEIbcDhmmw",
+      "RJs_aLtSS_6BGtqLD_TN-Q.CCyxKXoERSyaW_nO8keDCA": "Uahm9yCRQxarhEIbcDhmmw",
+      "N_a80jVsRpqIVWNG7diiFg.aC70NewBQBOhLJp7lsPC0g": "Uahm9yCRQxarhEIbcDhmmw"
+    },
+    "locksDict": {
+      "RIXzLsj_Rz2PZ7y2KunU6w": {
+        "OHZghd5-TZCTWHYzvFm2AQ.CCyxKXoERSyaW_nO8keDCA": {
+          "view": "OHZghd5-TZCTWHYzvFm2AQ",
+          "track": "CCyxKXoERSyaW_nO8keDCA"
+        },
+        "OHZghd5-TZCTWHYzvFm2AQ.NfdwnPmmTD-897GyJ5f22A": {
+          "view": "OHZghd5-TZCTWHYzvFm2AQ",
+          "track": "NfdwnPmmTD-897GyJ5f22A"
+        },
+        "BNC5_tQKSbir2O54lqm_6g.aC70NewBQBOhLJp7lsPC0g": {
+          "view": "BNC5_tQKSbir2O54lqm_6g",
+          "track": "aC70NewBQBOhLJp7lsPC0g"
+        },
+        "DP3kiS_pRh29jKAVabyKLA.YmCQS4TbT46-n7EKwCw5iA": {
+          "view": "DP3kiS_pRh29jKAVabyKLA",
+          "track": "YmCQS4TbT46-n7EKwCw5iA"
+        },
+        "DP3kiS_pRh29jKAVabyKLA.ZMj02OUFRJOMWEDtyoZ1FA": {
+          "view": "DP3kiS_pRh29jKAVabyKLA",
+          "track": "ZMj02OUFRJOMWEDtyoZ1FA"
+        },
+        "uid": "RIXzLsj_Rz2PZ7y2KunU6w"
+      },
+      "Uahm9yCRQxarhEIbcDhmmw": {
+        "N_a80jVsRpqIVWNG7diiFg.aC70NewBQBOhLJp7lsPC0g": {
+          "view": "N_a80jVsRpqIVWNG7diiFg",
+          "track": "aC70NewBQBOhLJp7lsPC0g"
+        },
+        "RJs_aLtSS_6BGtqLD_TN-Q.CCyxKXoERSyaW_nO8keDCA": {
+          "view": "RJs_aLtSS_6BGtqLD_TN-Q",
+          "track": "CCyxKXoERSyaW_nO8keDCA"
+        },
+        "RJs_aLtSS_6BGtqLD_TN-Q.NfdwnPmmTD-897GyJ5f22A": {
+          "view": "RJs_aLtSS_6BGtqLD_TN-Q",
+          "track": "NfdwnPmmTD-897GyJ5f22A"
+        },
+        "R4_qtXb1TfyfgPqDv-0PjA.YmCQS4TbT46-n7EKwCw5iA": {
+          "view": "R4_qtXb1TfyfgPqDv-0PjA",
+          "track": "YmCQS4TbT46-n7EKwCw5iA"
+        },
+        "R4_qtXb1TfyfgPqDv-0PjA.ZMj02OUFRJOMWEDtyoZ1FA": {
+          "view": "R4_qtXb1TfyfgPqDv-0PjA",
+          "track": "ZMj02OUFRJOMWEDtyoZ1FA"
+        },
+        "uid": "Uahm9yCRQxarhEIbcDhmmw"
+      }
+    }
   }
 }
 

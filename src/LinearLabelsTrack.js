@@ -34,12 +34,6 @@ const LinearLabelsTrack = (HGC, ...args) => {
         : this.tilesetInfo.max_width || this.tilesetInfo.max_size;
     }
 
-    draw() {
-      // console.log('--------------');
-      super.draw();
-      // console.log('this.xTiles:', this.xTiles, this.yTiles, this._yScale.domain());
-    }
-
     initTile(tile) {
       for (const data of tile.tileData) {
         if (!('uid' in data)) {
@@ -68,17 +62,22 @@ const LinearLabelsTrack = (HGC, ...args) => {
         text.updateTransform();
 
         const b = text.getBounds();
-        const box = [b.x, b.y, b.x + b.width, b.y + b.height];
+        let box = [b.x, b.y, b.x + b.width, b.y + b.height];
+
+        if (this.flipText) {
+          box = [b.x, b.y, b.x + b.height, b.y + b.width];
+        }
+
         this.boxes[point.uid] = box;
         // console.log('box:', box);
 
         this.allTexts = Object.values(this.texts);
         this.allBoxes = Object.values(this.boxes);
-        
+
         return text;
-      } else {
-        return this.texts[point.uid].text;
       }
+
+      return this.texts[point.uid].text;
     }
 
     destroyTile(tile) {
@@ -105,10 +104,10 @@ const LinearLabelsTrack = (HGC, ...args) => {
     drawTile(tile) {
       tile.graphics.clear();
 
-      if (!tile.tileData.length){
+      if (!tile.tileData.length) {
         return;
       }
-      
+
       // console.log('draw:', tile.tileId);
       for (const point of tile.tileData) {
         // console.log('point.pos:', point.pos);
@@ -127,15 +126,17 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
         tile.graphics.beginFill(0x000000);
         tile.graphics.drawRect(xPos - (pointWidth / 2),
-          yPos + marginMiddle / 2 , pointWidth, pointHeight);
+          yPos + (marginMiddle / 2), pointWidth, pointHeight);
 
         const text = this.getText(tile, point);
+
+        if (this.flipText) text.scale.x = -1;
 
         text.anchor.x = 0.5;
         text.anchor.y = 1;
 
         text.x = xPos;
-        text.y = yPos - marginMiddle / 2;
+        text.y = yPos - (marginMiddle / 2);
 
         const box = this.boxes[point.uid];
 
@@ -149,7 +150,7 @@ const LinearLabelsTrack = (HGC, ...args) => {
       }
     }
 
-    zoomed(newXScale, newYScale) {
+    zoomed(newXScale/* , newYScale */) {
       this.xScale(newXScale);
 
       this.refreshTiles();
@@ -176,8 +177,8 @@ const LinearLabelsTrack = (HGC, ...args) => {
       }
 
       // This code is commented out because it leads to labels appearing
-      // in reponse to the disappearance of another label. 
-      // 
+      // in reponse to the disappearance of another label.
+      //
       // let allTextsBoxes = [];
       // // turn on all texts so that we can hide the ones that overlap
       // if (allTexts) {
@@ -231,7 +232,8 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
       // for (let i = 0; i < allTextsBoxes.length; i++) {
       //   if (allTextsBoxes[i][0].text.visible) {
-      //     console.log(i, allTextsBoxes[i][0].text.text, allTextsBoxes[i][0].importance, allTextsBoxes[i][1]);
+      //     console.log(i, allTextsBoxes[i][0].text.text,
+      //     allTextsBoxes[i][0].importance, allTextsBoxes[i][1]);
       //   }
       // }
 
