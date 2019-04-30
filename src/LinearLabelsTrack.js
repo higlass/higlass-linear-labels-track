@@ -47,7 +47,7 @@ const LinearLabelsTrack = (HGC, ...args) => {
         // console.log('point:', point);
 
         // const text = new PIXI.Text(`${point.data.num}\n${point.data.factors.join(",")}`, {
-        const labelField = this.options.labelField || 'label';
+        const labelField = this.labelField();
 
         const text = new PIXI.Text(`${point[labelField]}`, {
           fontSize: '13px',
@@ -92,6 +92,36 @@ const LinearLabelsTrack = (HGC, ...args) => {
       }
     }
 
+    getMouseOverHtml(trackX) {
+      const relPos = trackX;
+      const { tileProxy } = HGC.services;
+
+      if (!this.tilesetInfo) return '';
+
+      const zoomLevel = this.calculateZoomLevel();
+      const tileWidth = tileProxy.calculateTileWidth(
+        this.tilesetInfo, zoomLevel, this.tilesetInfo.tile_size,
+      );
+
+      // console.log('dataPos:', this._xScale.invert(relPos));
+
+      const tilePos = this._xScale.invert(relPos) / tileWidth;
+      const tileId = this.tileToLocalId([zoomLevel, Math.floor(tilePos)]);
+      const tile = this.fetchedTiles[tileId];
+
+      if (!tile) return '';
+
+      for (let i = 0; i < tile.tileData.length; i++) {
+        const value = +tile.tileData[i][this.xField()];
+
+        if (+tile.tileData[i][this.xField()] === Math.round(this._xScale.invert(relPos))) {
+          return tile.tileData[i][this.labelField() ];
+        }
+      }
+
+      return '';
+    }
+
     draw() {
       super.draw();
 
@@ -99,6 +129,14 @@ const LinearLabelsTrack = (HGC, ...args) => {
       this.allTexts = Object.values(this.texts);
 
       this.hideOverlaps(this.allBoxes, this.allTexts);
+    }
+
+    xField() {
+      return this.options.xPosField || 'x';
+    }
+
+    labelField() {
+      return this.options.labelField || 'label';
     }
 
     drawTile(tile) {
@@ -113,16 +151,16 @@ const LinearLabelsTrack = (HGC, ...args) => {
         // console.log('point.pos:', point.pos);
         // add text showing the tile position
 
-        const xField = this.options.xPosField || 'x';
-
-        const xPos = this._xScale(point[xField]);
-        const yPos = this.dimensions[1] / 2;
+        const xField = this.xField();
 
         // console.log('xPos:', xPos, point[xField]);
 
         const pointWidth = 2;
         const pointHeight = 6;
         const marginMiddle = 4;
+
+        const xPos = this._xScale(point[xField]);
+        const yPos = this.dimensions[1] - (marginMiddle + pointHeight);
 
         tile.graphics.beginFill(0x000000);
         tile.graphics.drawRect(xPos - (pointWidth / 2),
