@@ -2,6 +2,20 @@ import boxIntersect from 'box-intersect';
 import * as PIXI from 'pixi.js';
 import slugid from 'slugid';
 
+
+function hash(a) {
+  // used for calculating an importance value based on the
+  // index of a point
+  a = (a+0x7ed55d16) + (a<<12);
+  a = (a^0xc761c23c) ^ (a>>19);
+  a = (a+0x165667b1) + (a<<5);
+  a = (a+0xd3a2646c) ^ (a<<9);
+  a = (a+0xfd7046c5) + (a<<3);
+  a = (a^0xb55a4f09) ^ (a>>16);
+
+  return a;
+}
+
 const LinearLabelsTrack = (HGC, ...args) => {
   if (!new.target) {
     throw new Error(
@@ -39,6 +53,10 @@ const LinearLabelsTrack = (HGC, ...args) => {
         if (!('uid' in data)) {
           data.uid = slugid.nice();
         }
+        if (!data.importance) {
+          data.importance = hash(data.x);
+          // console.log('importance:', data.importance);
+        }
       }
     }
 
@@ -70,9 +88,6 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
         this.boxes[point.uid] = box;
         // console.log('box:', box);
-
-        this.allTexts = Object.values(this.texts);
-        this.allBoxes = Object.values(this.boxes);
 
         return text;
       }
@@ -112,10 +127,9 @@ const LinearLabelsTrack = (HGC, ...args) => {
       if (!tile) return '';
 
       for (let i = 0; i < tile.tileData.length; i++) {
-        const value = +tile.tileData[i][this.xField()];
-
         if (+tile.tileData[i][this.xField()] === Math.round(this._xScale.invert(relPos))) {
-          return tile.tileData[i][this.labelField() ];
+          return tile.tileData[i][this.labelField()];
+          //console.log(this.boxes[tile.tileData[i].uid]);
         }
       }
 
@@ -127,6 +141,8 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
       this.allBoxes = Object.values(this.boxes);
       this.allTexts = Object.values(this.texts);
+
+      shuffle(this.allBoxes, this.allTexts);
 
       this.hideOverlaps(this.allBoxes, this.allTexts);
     }
@@ -181,11 +197,19 @@ const LinearLabelsTrack = (HGC, ...args) => {
         const boxWidth = box[2] - box[0];
         const boxHeight = box[3] - box[1];
 
-        box[0] = xPos;
+        box[0] = xPos - boxWidth / 2;
         box[1] = yPos;
-        box[2] = xPos + boxWidth;
+        box[2] = xPos + boxWidth / 2;
         box[3] = yPos + boxHeight;
+
+        // draw an outline around (or near) the text
+        // tile.graphics.lineStyle(1, 0x000000, 1);
+        // tile.graphics.beginFill(0x000000, 0);
+        // tile.graphics.drawRect(box[0], box[1], (box[2] - box[0]), (box[3] - box[1]));
       }
+
+      this.allTexts = Object.values(this.texts);
+      this.allBoxes = Object.values(this.boxes);
     }
 
     zoomed(newXScale/* , newYScale */) {
@@ -214,79 +238,25 @@ const LinearLabelsTrack = (HGC, ...args) => {
         console.warn('uneven lengths:', allBoxes.length, allTexts.length);
       }
 
-      // This code is commented out because it leads to labels appearing
-      // in reponse to the disappearance of another label.
-      //
-      // let allTextsBoxes = [];
-      // // turn on all texts so that we can hide the ones that overlap
-      // if (allTexts) {
-      //   for (let i = 0; i < allTexts.length; i++) {
-      //     allTexts[i].text.visible = true;
-
-      //     // store texts and bounding boes together so that we can sort
-      //     // them by importance later
-      //     allTextsBoxes.push([allTexts[i], allBoxes[i], i]);
-      //   }
-      // }
-
-      // // keep track of which texts intersect
-      // const intersections = {};
-      // boxIntersect(allBoxes, (i, j) => {
-      //   if (!intersections[i]) {
-      //     intersections[i] = new Set();
-      //   }
-
-      //   if (!intersections[j]) {
-      //     intersections[j] = new Set();
-      //   }
-
-      //   intersections[i].add(j);
-      //   intersections[j].add(i);
-      // });
-
-      // allTextsBoxes.sort((a, b) => +b[0].importance - +a[0].importance);
-      // console.log('allTextsBoxes', allTextsBoxes);
-
-      // for (let i = 0; i < allTextsBoxes.length; i++) {
-      //   const origIndex = allTextsBoxes[i][2];
-      //   const text = allTextsBoxes[i][0];
-
-      //   if (!text.text.visible) {
-      //     // already hidden so ignore this text
-      //     continue;
-      //   }
-
-      //   if (intersections[origIndex]) {
-      //     // has an intersection
-      //     for (const k of intersections[origIndex]) {
-      //       if (allTexts[k].importance <= allTexts[origIndex].importance) {
-      //         // console.log('hiding:', origIndex, text.importance, k, allTexts[k].importance);
-      //         allTexts[k].text.visible = false;
-      //       }
-      //     }
-      //   }
-
-      // }
-
-      // for (let i = 0; i < allTextsBoxes.length; i++) {
-      //   if (allTextsBoxes[i][0].text.visible) {
-      //     console.log(i, allTextsBoxes[i][0].text.text,
-      //     allTextsBoxes[i][0].importance, allTextsBoxes[i][1]);
-      //   }
-      // }
-
       if (allTexts) {
         for (let i = 0; i < allTexts.length; i++) {
           allTexts[i].text.visible = true;
         }
       }
 
+      let intersections = [];
+
       boxIntersect(allBoxes, (i, j) => {
+        if (!allTexts[i].text.visible || !allTexts[j].text.visible) {
+          return;
+        }
+
+        // console.log("intersect:", i, j, allTexts[i].importance, allTexts[j].importance);
         if (allTexts[i].importance > allTexts[j].importance) {
-          // console.log('hiding:', allTexts[j].caption)
+          // console.log('hiding:', j)
           allTexts[j].text.visible = false;
         } else {
-          // console.log('hiding:', allTexts[i].caption)
+          // console.log('hiding:', i)
           allTexts[i].text.visible = false;
         }
       });
