@@ -67,12 +67,12 @@ const testViewConfig =
   "views": [
     {
       "initialXDomain": [
-        41203.18033314141,
-        41206.790631953474
+        41152.61945420508,
+        41243.01114464178
       ],
       "initialYDomain": [
-        40359.45494739051,
-        40362.30924345989
+        40335.705881803675,
+        40419.32204518915
       ],
       "tracks": {
         "top": [
@@ -90,7 +90,17 @@ const testViewConfig =
             "position": "top"
           }
         ],
-        "left": [],
+        "left": [{
+            "type": "linear-labels",
+            "tilesetUid": "ZPIL0W2NTyadgTPMqfPqnw",
+            "server": "http://resgen.io/api/v1",
+            "options": {
+              "name": "labels.h5"
+            },
+            "name": "labels.h5",
+            "width": 47,
+            "position": "left"
+          }],
         "center": [],
         "bottom": [],
         "right": [],

@@ -125,15 +125,22 @@ const LinearLabelsTrack = (HGC, ...args) => {
       const tile = this.fetchedTiles[tileId];
 
       if (!tile) return '';
+      let closestTickDistance = Number.MAX_SAFE_INTEGER;
+      const acceptableDistance = 5;
+      let mouseOverHtml = '';
 
       for (let i = 0; i < tile.tileData.length; i++) {
-        if (+tile.tileData[i][this.xField()] === Math.round(this._xScale.invert(relPos))) {
-          return tile.tileData[i][this.labelField()];
-          //console.log(this.boxes[tile.tileData[i].uid]);
+        const tickDistance = Math.abs(+this._xScale(tile.tileData[i][this.xField()]) - relPos);
+
+        if (tickDistance < acceptableDistance) {
+          if (tickDistance < closestTickDistance) {
+            mouseOverHtml = tile.tileData[i][this.labelField()];
+            closestTickDistance = tickDistance;
+          }
         }
       }
 
-      return '';
+      return mouseOverHtml;
     }
 
     draw() {
@@ -141,8 +148,6 @@ const LinearLabelsTrack = (HGC, ...args) => {
 
       this.allBoxes = Object.values(this.boxes);
       this.allTexts = Object.values(this.texts);
-
-      shuffle(this.allBoxes, this.allTexts);
 
       this.hideOverlaps(this.allBoxes, this.allTexts);
     }
