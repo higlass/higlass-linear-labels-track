@@ -16,7 +16,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/pkerpedjiev/higlass-linear-labels-track.git"
+    "url": "git://github.com/higlass/higlass-linear-labels-track.git"
   },
   "main": "src/index.js",
   "unpkg": "dist/higlass-linear-labels-track.min.js",
@@ -58,6 +58,7 @@
     "prerelease": "rm -rf dist/*; npm run build; zip -r dist.zip dist"
   },
   "dependencies": {
+    "box-intersect": "1.0.2",
     "higlass-register": "^0.1.0"
   }
 }

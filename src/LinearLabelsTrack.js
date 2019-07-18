@@ -1,6 +1,4 @@
 import boxIntersect from 'box-intersect';
-import * as PIXI from 'pixi.js';
-import slugid from 'slugid';
 
 
 function hash(a) {
@@ -22,6 +20,9 @@ const LinearLabelsTrack = (HGC, ...args) => {
       'Uncaught TypeError: Class constructor cannot be invoked without "new"',
     );
   }
+
+  // Services
+  const { PIXI, slugid } = HGC.libraries;
 
   class LinearLabelsTrackClass extends HGC.tracks.HorizontalGeneAnnotationsTrack {
     constructor(
